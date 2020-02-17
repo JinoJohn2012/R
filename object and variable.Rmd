@@ -1,0 +1,62 @@
+---
+title: "understanding object and variable"
+author: "Jino John"
+date: '2020 2 17 '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+rm(list=ls(all=TRUE))
+
+##########################################################################자신의 PC에서 구글 드라이브가 작동하면 아래 코드로 실습용 엑셀 데이터셋을 호출하면 됩니다
+
+library(googledrive) # 구글 드라이브
+library(readxl) # 엑셀 파일 오픈
+
+#두 라이브러리가 설치되어 있지 않으면 아래 코드로 설치하세요
+# install.packages("googledrive") #실행시 맨 왼쪽의 # 지우기
+# install.packages("readxl") #실행시 맨 왼쪽의 # 지우기
+
+id <- "1dR2EoJoMJVcQjgLATi8GBgllfFf7lBrE" #공유된 엑셀 파일 아이디
+k <- tempfile(fileext = ".xlsx"); k
+
+drive_auth(TRUE)
+drive_download(as_id(id), k, overwrite = T)
+df <- as.data.frame(read_excel(k))
+
+df
+
+#########################################################################
+str(df)
+
+```
+
+제 3강
+```{r}
+colanmes(df)
+```
+
